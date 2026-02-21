@@ -1,0 +1,26 @@
+// Leetcode 762
+// Bit manipulation
+
+
+class Solution {
+    public int countPrimeSetBits(int left, int right) {
+        Set<Integer> prime=Set.of(2,3,5,7,11,13,17,19);
+        int count1=0;
+        int countPrime=0;
+        while(left<=right){
+            int n=left;
+            while(n !=0){
+                if(n % 2==1){
+                    count1++;
+                }
+                n=n/2;
+            }
+            if(prime.contains(count1)){
+                countPrime++;
+            }
+            count1=0;
+            left++;
+        }
+        return countPrime;
+    }
+}
