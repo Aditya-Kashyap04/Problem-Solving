@@ -1,0 +1,30 @@
+// Leetcode 33
+// Medium- Binary Search
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int left=0,right=nums.length-1;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(nums[mid]==target)return mid;
+        // left part sorted hai then ham ye inner fn chalenge and fir check karenge ki present hai ki nhi. if left me present nhi hai then left pointer mid ke right me chala jayega & phir while loop ki help se left part me check karenge
+            if(nums[mid]>=nums[left]){
+                if(nums[left]<=target && target <=nums[mid]){
+                    right=mid-1;
+                }
+                else left= mid+1;// nhi present hai to ham mid ke dusre taraf check karenge
+            }
+    // right part sorted hai then ham ye inner fn chalenge and fir check karenge ki present hai ki nhi. if right me present nhi hai then right pointer mid ke left me chala jayega & phir while loop ki help se left part me check karenge
+            else{
+                if(nums[right]>=nums[mid]){
+                    if(nums[mid]<=target && target<=nums[right]){
+                        left=mid+1;
+                    }
+                    else right= mid-1;
+                }
+
+            }
+        }
+        return -1;
+    }
+}
